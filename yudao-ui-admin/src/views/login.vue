@@ -1,6 +1,7 @@
 <template xmlns="">
   <div class="container">
-    <div class="logo"></div>
+<!--    <div class="logo"></div>-->
+    <h3 class="title">个人预算管理系统</h3>
     <!-- 登录区域 -->
     <div class="content">
       <!-- 配图 -->
@@ -9,7 +10,7 @@
       <div class="field">
         <!-- [移动端]标题 -->
         <h2 class="mobile-title">
-          <h3 class="title">芋道后台管理系统</h3>
+          <h3 class="title">个人预算管理系统</h3>
         </h2>
 
         <!-- 表单 -->
@@ -22,11 +23,11 @@
           </el-tabs>
           <div>
             <el-form ref="loginForm" :model="loginForm" :rules="LoginRules" class="login-form">
-              <el-form-item prop="tenantName" v-if="tenantEnable">
-                <el-input v-model="loginForm.tenantName" type="text" auto-complete="off" placeholder='租户'>
-                  <svg-icon slot="prefix" icon-class="tree" class="el-input__icon input-icon"/>
-                </el-input>
-              </el-form-item>
+<!--              <el-form-item prop="tenantName" v-if="tenantEnable">-->
+<!--                <el-input v-model="loginForm.tenantName" type="text" auto-complete="off" placeholder='租户'>-->
+<!--                  <svg-icon slot="prefix" icon-class="tree" class="el-input__icon input-icon"/>-->
+<!--                </el-input>-->
+<!--              </el-form-item>-->
               <!-- 账号密码登录 -->
               <div v-if="loginForm.loginType === 'uname'">
                 <el-form-item prop="username">
@@ -85,12 +86,12 @@
               </el-form-item>
 
               <!-- 教程说明 -->
-              <el-form-item style="width:100%; margin-top:-25px">
-                <el-link href="https://doc.iocoder.cn/" target="_blank">📚开发指南</el-link>
-                <el-link href="https://doc.iocoder.cn/video/" target="_blank" style="padding-left: 10px">🔥视频教程</el-link>
-                <el-link href="https://www.iocoder.cn/Interview/good-collection/" target="_blank" style="padding-left: 10px">⚡面试手册</el-link>
-                <el-link href="http://static.yudao.iocoder.cn/mp/Aix9975.jpeg" target="_blank" style="padding-left: 10px">🤝外包咨询</el-link>
-              </el-form-item>
+<!--              <el-form-item style="width:100%; margin-top:-25px">-->
+<!--                <el-link href="https://doc.iocoder.cn/" target="_blank">📚开发指南</el-link>-->
+<!--                <el-link href="https://doc.iocoder.cn/video/" target="_blank" style="padding-left: 10px">🔥视频教程</el-link>-->
+<!--                <el-link href="https://www.iocoder.cn/Interview/good-collection/" target="_blank" style="padding-left: 10px">⚡面试手册</el-link>-->
+<!--                <el-link href="http://static.yudao.iocoder.cn/mp/Aix9975.jpeg" target="_blank" style="padding-left: 10px">🤝外包咨询</el-link>-->
+<!--              </el-form-item>-->
             </el-form>
           </div>
         </div>
@@ -325,7 +326,14 @@ export default {
 <style lang="scss" scoped>
 @import "~@/assets/styles/login.scss";
 
-
+.title {
+  font-size: 28px;
+  color: #707070;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .oauth-login {
   display: flex;
   align-items: center;
