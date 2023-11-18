@@ -45,6 +45,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/register',
+    component: () => import('@/views/register'),
+    hidden: true
+  },
+  {
     path: '/sso',
     component: (resolve) => require(['@/views/sso'], resolve),
     hidden: true
