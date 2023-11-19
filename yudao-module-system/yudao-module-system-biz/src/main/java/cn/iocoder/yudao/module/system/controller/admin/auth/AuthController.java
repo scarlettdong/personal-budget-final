@@ -8,6 +8,7 @@ import cn.iocoder.yudao.framework.common.pojo.CommonResult;
 import cn.iocoder.yudao.framework.operatelog.core.annotations.OperateLog;
 import cn.iocoder.yudao.framework.security.config.SecurityProperties;
 import cn.iocoder.yudao.module.system.controller.admin.auth.vo.*;
+import cn.iocoder.yudao.module.system.controller.admin.user.vo.user.UserCreateReqVO;
 import cn.iocoder.yudao.module.system.convert.auth.AuthConvert;
 import cn.iocoder.yudao.module.system.dal.dataobject.permission.MenuDO;
 import cn.iocoder.yudao.module.system.dal.dataobject.permission.RoleDO;
@@ -69,6 +70,15 @@ public class AuthController {
     @OperateLog(enable = false) // 避免 Post 请求被记录操作日志
     public CommonResult<AuthLoginRespVO> login(@RequestBody @Valid AuthLoginReqVO reqVO) {
         return success(authService.login(reqVO));
+    }
+
+    @PostMapping("/register")
+    @PermitAll
+    @Operation(summary = "注册")
+    @OperateLog(enable = false) // 避免 Post 请求被记录操作日志
+    public CommonResult<Long> register(@Valid @RequestBody UserCreateReqVO reqVO) {
+        Long id = userService.register(reqVO);
+        return success(id);
     }
 
     @PostMapping("/logout")

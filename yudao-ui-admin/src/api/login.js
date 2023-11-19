@@ -19,7 +19,13 @@ export function login(username, password, captchaVerification, socialType, socia
     data: data
   })
 }
-
+export function register(data) {
+  return request({
+    url: '/system/auth/register',
+    method: 'post',
+    data: data
+  })
+}
 // 获取用户详细信息
 export function getInfo() {
   return request({

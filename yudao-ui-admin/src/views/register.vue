@@ -118,7 +118,7 @@ export default {
       this.$refs.verify.show()
     },
     handleRegister() {
-      addUser(this.registerForm).then(response => {
+      register(this.registerForm).then(response => {
         this.$modal.msgSuccess("注册成功");
       }).then(() => {
         this.$router.push("/login");

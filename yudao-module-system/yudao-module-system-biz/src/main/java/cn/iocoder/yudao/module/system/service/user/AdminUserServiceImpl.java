@@ -93,14 +93,28 @@ public class AdminUserServiceImpl implements AdminUserService {
         user.setStatus(CommonStatusEnum.ENABLE.getStatus()); // 默认开启
         user.setPassword(encodePassword(reqVO.getPassword())); // 加密密码
         userMapper.insert(user);
-//        Set<Long> roleIds = new HashSet<>();
-//        roleIds.add(2L);
-//        permissionService.assignUserRole(user.getId(),roleIds);
         // 插入关联岗位
         if (CollectionUtil.isNotEmpty(user.getPostIds())) {
             userPostMapper.insertBatch(convertList(user.getPostIds(),
                     postId -> new UserPostDO().setUserId(user.getId()).setPostId(postId)));
         }
+        return user.getId();
+    }
+
+    @Override
+    public Long register(UserCreateReqVO reqVO) {
+        // 校验正确性
+        validateUserForCreateOrUpdate(null, reqVO.getUsername(), reqVO.getMobile(), reqVO.getEmail(),
+            reqVO.getDeptId(), reqVO.getPostIds());
+        // 插入用户
+        AdminUserDO user = UserConvert.INSTANCE.convert(reqVO);
+        user.setNickname(user.getUsername());
+        user.setStatus(CommonStatusEnum.ENABLE.getStatus()); // 默认开启
+        user.setPassword(encodePassword(reqVO.getPassword())); // 加密密码
+        userMapper.insert(user);
+        Set<Long> roleIds = new HashSet<>();
+        roleIds.add(140L);
+        permissionService.assignUserRole(user.getId(),roleIds);
         return user.getId();
     }
 
