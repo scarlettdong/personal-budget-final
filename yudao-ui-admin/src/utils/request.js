@@ -88,8 +88,14 @@ service.interceptors.response.use(async res => {
       if (!getRefreshToken()) {
         return handleAuthorized();
       }
+      MessageBox.confirm('Your token has expired, please log in again.', 'token Expired', {
+        confirmButtonText: 'Re-Login',
+        showCancelButton: false,
+        type: 'warning'
+      })
       // 2. 进行刷新访问令牌
       try {
+
         const refreshTokenRes = await refreshToken()
         // 2.1 刷新成功，则回放队列的请求 + 当前请求
         setToken(refreshTokenRes.data)
