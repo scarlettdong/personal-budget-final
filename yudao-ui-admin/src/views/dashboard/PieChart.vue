@@ -10,6 +10,10 @@ import resize from './mixins/resize'
 export default {
   mixins: [resize],
   props: {
+    PieData:{
+      type:Array,
+      default:[]
+    },
     className: {
       type: String,
       default: 'chart'
@@ -30,7 +34,10 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.initChart()
+        setTimeout(() => {
+          this.initChart()
+
+        }, 400);
     })
   },
   beforeDestroy() {
@@ -61,18 +68,21 @@ export default {
             roseType: 'radius',
             radius: [15, 95],
             center: ['50%', '38%'],
-            data: [
-              { value: 320, name: 'Industries' },
-              { value: 240, name: 'Technology' },
-              { value: 149, name: 'Forex' },
-              { value: 100, name: 'Gold' },
-              { value: 59, name: 'Forecasts' }
-            ],
+            data: this.PieData,
             animationEasing: 'cubicInOut',
             animationDuration: 2600
           }
         ]
       })
+
+
+      // [
+      //         { value: 320, name: 'Industries' },
+      //         { value: 240, name: 'Technology' },
+      //         { value: 149, name: 'Forex' },
+      //         { value: 100, name: 'Gold' },
+      //         { value: 59, name: 'Forecasts' }
+      //       ],
     }
   }
 }

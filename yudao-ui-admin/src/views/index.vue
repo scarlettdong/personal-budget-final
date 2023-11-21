@@ -9,23 +9,29 @@
 
     <el-row :gutter="32">
       <el-col :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
+        <!-- <div class="chart-wrapper">
           <raddar-chart />
+        </div> -->
+        <div class="chart-wrapper">
+          <h2>总计支出</h2>
+          <pie-chart :PieData="zhichu" />
         </div>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <pie-chart />
+          <h2>预算</h2>
+          <pie-chart :PieData="yuSuan" />
         </div>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="8">
+        <h1>支出</h1>
         <div class="chart-wrapper">
-          <bar-chart />
+          <bar-chart :barDate="LineData" />
         </div>
       </el-col>
     </el-row>
 
-    
+
   </div>
 </template>
 
@@ -35,7 +41,7 @@ import LineChart from './dashboard/LineChart'
 import RaddarChart from './dashboard/RaddarChart'
 import PieChart from './dashboard/PieChart'
 import BarChart from './dashboard/BarChart'
-
+import { getCategoryAndAmount, getCategoryAndDate } from "../api/Observer"
 const lineChartData = {
   newVisitis: {
     expectedData: [100, 120, 161, 134, 105, 160, 165],
@@ -66,10 +72,60 @@ export default {
   },
   data() {
     return {
-      lineChartData: lineChartData.newVisitis
+      lineChartData: lineChartData.newVisitis,
+      yuSuan: [],
+      LineData: {
+        data:[],
+        series:[]
+      },
+      zhichu:[]
     }
   },
+  created() {
+    this.CategoryAndAmountPie()
+    this.categoryDate()
+  },
   methods: {
+    categoryDate() {
+      getCategoryAndDate().then(res => {
+        // {
+        //   name: 'pageA',
+        //   type: 'bar',
+        //   stack: 'vistors',
+        //   barWidth: '60%',
+        //   data: [79, 52, 200, 334, 390, 330, 220],
+        //   animationDuration
+        // }
+        console.log(res)
+        res.forEach(e => {
+          this.LineData.data.push(`${e.budgetDate[0]}-${e.budgetDate[1]}-${e.budgetDate[2]}`)
+          this.LineData.series.push({
+            name: e.category,
+            type: 'bar',
+            stack: 'vistors',
+            barWidth: '60%',
+            data: [e.spentAmount],
+            
+          })
+        })
+      })
+    },
+    CategoryAndAmountPie() {
+      getCategoryAndAmount().then(res => {
+        console.log(res)
+        res.forEach(element => {
+          this.zhichu.push({
+            name: element.category,
+            value: element.spentAmount||0
+          })
+          this.yuSuan.push({
+            name: element.category,
+            value: element.amount||0
+          })
+        });
+        console.log(this.zhichu)
+      })
+    },
     handleSetLineChartData(type) {
       this.lineChartData = lineChartData[type]
     }
