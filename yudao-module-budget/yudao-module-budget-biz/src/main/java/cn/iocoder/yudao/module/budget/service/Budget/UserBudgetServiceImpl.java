@@ -1,5 +1,6 @@
 package cn.iocoder.yudao.module.budget.service.Budget;
 
+import java.math.BigDecimal;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -32,6 +33,7 @@ public class UserBudgetServiceImpl implements UserBudgetService {
 
     @Override
     public Integer createUserBudget(UserBudgetCreateReqVO createReqVO) {
+        createReqVO.setSpentAmount(BigDecimal.valueOf(0));
         // 插入
         UserBudgetDO userBudget = UserBudgetConvert.INSTANCE.convert(createReqVO);
         userBudgetMapper.insert(userBudget);

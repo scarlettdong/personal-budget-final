@@ -1,7 +1,12 @@
 package cn.iocoder.yudao.module.budget.service.expense;
 
+import cn.iocoder.yudao.module.budget.convert.Budget.UserBudgetConvert;
+import cn.iocoder.yudao.module.budget.dal.dataobject.Budget.UserBudgetDO;
+import cn.iocoder.yudao.module.budget.dal.mysql.Budget.UserBudgetMapper;
+import java.math.BigDecimal;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.*;
@@ -30,8 +35,15 @@ public class UserExpenseServiceImpl implements UserExpenseService {
     @Resource
     private UserExpenseMapper userExpenseMapper;
 
+    @Resource
+    private UserBudgetMapper userBudgetMapper;
+    @Transactional
     @Override
     public Integer createUserExpense(UserExpenseCreateReqVO createReqVO) {
+        UserBudgetDO userBudget = userBudgetMapper.selectById(createReqVO.getBudgetId());
+        BigDecimal spentAmount = userBudget.getSpentAmount().add(createReqVO.getExpenseAmount());
+        userBudget.setSpentAmount(spentAmount);
+        userBudgetMapper.updateById(userBudget);
         // 插入
         UserExpenseDO userExpense = UserExpenseConvert.INSTANCE.convert(createReqVO);
         userExpenseMapper.insert(userExpense);
