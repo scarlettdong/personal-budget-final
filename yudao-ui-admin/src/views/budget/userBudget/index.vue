@@ -234,13 +234,13 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加预算";
+      this.title = "add budget";
     },
     handleUpdate2(row) {
       this.reset2();
       this.form2.budgetId = row.id;
       this.open2 = true;
-      this.title = "添加花费";
+      this.title = "add expense";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
@@ -249,7 +249,7 @@ export default {
       getUserBudget(id).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改预算";
+        this.title = "update budget";
       });
     },
     /** 提交按钮 */
@@ -261,7 +261,7 @@ export default {
         // 修改的提交
         if (this.form.id != null) {
           updateUserBudget(this.form).then(response => {
-            this.$modal.msgSuccess("修改成功");
+            this.$modal.msgSuccess("update successfully");
             this.open = false;
             this.getList();
           });
@@ -270,7 +270,7 @@ export default {
         // 添加的提交
         console.log(this.form)
         createUserBudget(this.form).then(response => {
-          this.$modal.msgSuccess("新增成功");
+          this.$modal.msgSuccess("add successfully");
           this.open = false;
           this.getList();
         });
@@ -282,7 +282,7 @@ export default {
           return;
         }
         createUserExpense(this.form2).then(response => {
-          this.$modal.msgSuccess("新增成功");
+          this.$modal.msgSuccess("add successfully");
           this.open2 = false;
           this.getList();
         });
@@ -291,11 +291,11 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const id = row.id;
-      this.$modal.confirm('是否确认删除预算编号为"' + id + '"的数据项?').then(function () {
+      this.$modal.confirm("Are you sure you want to delete the budget item with ID '" + id + "'?").then(function () {
         return deleteUserBudget(id);
       }).then(() => {
         this.getList();
-        this.$modal.msgSuccess("删除成功");
+        this.$modal.msgSuccess("delete successfully");
       }).catch(() => {
       });
     },
@@ -305,7 +305,7 @@ export default {
       let params = {...this.queryParams};
       params.pageNo = undefined;
       params.pageSize = undefined;
-      this.$modal.confirm('是否确认导出所有预算数据项?').then(() => {
+      this.$modal.confirm("Are you sure you want to export all budget data items?").then(() => {
         this.exportLoading = true;
         return exportUserBudgetExcel(params);
       }).then(response => {
