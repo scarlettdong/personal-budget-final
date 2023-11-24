@@ -31,12 +31,12 @@
               <!-- 账号密码登录 -->
               <div v-if="loginForm.loginType === 'uname'">
                 <el-form-item prop="username">
-                  <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
+                  <el-input id="username" v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
                     <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon"/>
                   </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
-                  <el-input v-model="loginForm.password" type="password" auto-complete="off" placeholder="密码"
+                  <el-input id="password" v-model="loginForm.password" type="password" auto-complete="off" placeholder="密码"
                             @keyup.enter.native="getCode">
                     <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon"/>
                   </el-input>
@@ -68,7 +68,7 @@
 
               <!-- 下方的登录按钮 -->
               <el-form-item style="width:100%;">
-                <el-button :loading="loading" size="medium" type="primary" style="width:100%;"
+                <el-button id="loginButton"  :loading="loading" size="medium" type="primary" style="width:100%;"
                     @click.native.prevent="getCode">
                   <span v-if="!loading">登 录</span>
                   <span v-else>登 录 中...</span>
