@@ -107,7 +107,7 @@
 
     <!-- footer -->
     <div class="footer">
-      Copyright © 2020-2022 iocoder.cn All Rights Reserved.
+<!--      Copyright © 2020-2022 iocoder.cn All Rights Reserved.-->
     </div>
   </div>
 </template>
@@ -144,8 +144,8 @@ export default {
       register: true,
       loginForm: {
         loginType: "uname",
-        username: "admin",
-        password: "admin123",
+        username: "",
+        password: "",
         captchaVerification: "",
         mobile: "",
         mobileCode: "",

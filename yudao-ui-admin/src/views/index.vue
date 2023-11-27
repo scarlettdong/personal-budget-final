@@ -1,12 +1,12 @@
 <template>
   <div class="dashboard-editor-container">
 
-    <panel-group @handleSetLineChartData="handleSetLineChartData" />
+<!--    <panel-group @handleSetLineChartData="handleSetLineChartData" />-->
 
-    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
-      <line-chart :chart-data="lineChartData" />
-    </el-row>
-
+<!--    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">-->
+<!--      <line-chart :chart-data="lineChartData" />-->
+<!--    </el-row>-->
+     <h1>Scarlett Dong Personal Budget</h1>
     <el-row :gutter="32">
       <el-col :xs="24" :sm="24" :lg="8">
         <!-- <div class="chart-wrapper">
@@ -105,7 +105,7 @@ export default {
             stack: 'vistors',
             barWidth: '60%',
             data: [e.spentAmount],
-            
+
           })
         })
       })

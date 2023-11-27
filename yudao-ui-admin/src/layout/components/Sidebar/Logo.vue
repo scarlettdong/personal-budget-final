@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      title: '个人预算管理系统',
+      title: 'Personal Budget',
       logo: logoImg
     }
   }

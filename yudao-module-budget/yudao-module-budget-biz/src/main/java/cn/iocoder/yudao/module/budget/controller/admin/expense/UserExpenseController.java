@@ -43,7 +43,6 @@ public class UserExpenseController {
 
     @PostMapping("/create")
     @Operation(summary = "创建支出")
-    @PreAuthorize("@ss.hasPermission('budget:user-expense:create')")
     public CommonResult<Integer> createUserExpense(@Valid @RequestBody UserExpenseCreateReqVO createReqVO) {
         return success(userExpenseService.createUserExpense(createReqVO));
     }

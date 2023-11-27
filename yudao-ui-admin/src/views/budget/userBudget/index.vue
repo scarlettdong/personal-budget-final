@@ -73,7 +73,7 @@
 
     <!-- Dialog box (add/modify) -->
     <el-dialog :title="title" :visible.sync="open" width="500px" v-dialogDrag append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="140px">
 
         <el-form-item label="Budget category" prop="category">
           <el-input v-model="form.category" placeholder="Please enter budget category"/>
@@ -84,7 +84,7 @@
         <!--        <el-form-item label="Spent amount" prop="spentAmount">-->
         <!--          <el-input v-model="form.spentAmount" placeholder="Please enter spent amount" />-->
         <!--        </el-form-item>-->
-        <el-form-item label="Budget date" prop="budgetDate">
+        <el-form-item label="date" prop="budgetDate">
           <el-date-picker clearable v-model="form.budgetDate" type="date" value-format="yyyy-MM-dd"
                           placeholder="Select budget date"/>
         </el-form-item>
@@ -96,7 +96,7 @@
     </el-dialog>
     <!-- 对话框(添加 / 修改) -->
     <el-dialog :title="title" :visible.sync="open2" width="500px" v-dialogDrag append-to-body>
-      <el-form ref="form2" :model="form2" :rules="rules2" label-width="80px">
+      <el-form ref="form2" :model="form2" :rules="rules2" label-width="140px">
         <el-form-item label="Expense Item" prop="item">
           <el-input v-model="form2.item" placeholder="Enter the expense item"/>
         </el-form-item>
