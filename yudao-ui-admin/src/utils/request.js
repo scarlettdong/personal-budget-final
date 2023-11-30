@@ -88,15 +88,15 @@ service.interceptors.response.use(async res => {
       if (!getRefreshToken()) {
         return handleAuthorized();
       }
-      MessageBox({
-        title: 'Token Expired',
-        message: 'Your token has expired, please log in again.',
-        showCancelButton: false,
-        showConfirmButton: "刷新",
-        closeOnClickModal: false,
-        closeOnPressEscape: false,
-        closeOnHashChange: false,
-        type: 'warning'
+      MessageBox.confirm('Your token has expired, please log in again.', 'Token Expired', {
+          confirmButtonText: '退出',
+          cancelButtonText: '刷新',
+          type: 'warning'
+        }
+      ).then(()=>{
+          store.dispatch('LogOut').then(() => {
+            location.href = getPath('/index');
+          });
       });
       // 2. 进行刷新访问令牌
       try {
