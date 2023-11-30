@@ -11,8 +11,9 @@ import java.util.List;
 
 @Mapper
 public interface ObserverMapper  {
-    @Select("SELECT category, amount,spent_amount FROM budget")
+    @Select("SELECT category, amount, spent_amount FROM budget WHERE deleted=0")
     List<UserBudgetDO> getCategoryAndAmount();
-    @Select("SELECT category,amount,spent_amount,budget_date FROM `budget` order by budget_date desc  limit 0,5 ")
+
+    @Select("SELECT category, amount, spent_amount, budget_date FROM `budget` WHERE deleted=0 ORDER BY budget_date DESC LIMIT 0,5")
     List<UserBudgetDO> getDateCategory();
 }
