@@ -1,12 +1,12 @@
 <template>
   <div class="dashboard-editor-container">
 
-<!--    <panel-group @handleSetLineChartData="handleSetLineChartData" />-->
+    <!--    <panel-group @handleSetLineChartData="handleSetLineChartData" />-->
 
-<!--    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">-->
-<!--      <line-chart :chart-data="lineChartData" />-->
-<!--    </el-row>-->
-     <h1>Scarlett Dong Personal Budget</h1>
+    <!--    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">-->
+    <!--      <line-chart :chart-data="lineChartData" />-->
+    <!--    </el-row>-->
+    <h1>Scarlett Dong Personal Budget</h1>
     <el-row :gutter="32">
       <el-col :xs="24" :sm="24" :lg="8">
         <!-- <div class="chart-wrapper">
@@ -31,7 +31,17 @@
       </el-col>
     </el-row>
 
+    <el-table :data="tableData" style="width: 100%">
+      <el-table-column prop="bugdeteStr" label="日期" width="180">
+      </el-table-column>
+      <el-table-column prop="category" label="类目" width="180">
+      </el-table-column>
 
+      <el-table-column prop="amount" label="总预算">
+      </el-table-column>
+      <el-table-column prop="spentAmount" label="花费">
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -75,10 +85,11 @@ export default {
       lineChartData: lineChartData.newVisitis,
       yuSuan: [],
       LineData: {
-        data:[],
-        series:[]
+        data: [],
+        series: []
       },
-      zhichu:[]
+      zhichu: [],
+      tableData: []
     }
   },
   created() {
@@ -98,6 +109,8 @@ export default {
         // }
         console.log(res)
         res.forEach(e => {
+          e.bugdeteStr = `${e.budgetDate[0]}-${e.budgetDate[1]}-{${e.budgetDate[2]}}` || ''
+          this.tableData.push(e)
           this.LineData.data.push(`${e.budgetDate[0]}-${e.budgetDate[1]}-${e.budgetDate[2]}`)
           this.LineData.series.push({
             name: e.category,
@@ -112,18 +125,19 @@ export default {
     },
     CategoryAndAmountPie() {
       getCategoryAndAmount().then(res => {
+
         console.log(res)
         res.forEach(element => {
           this.zhichu.push({
             name: element.category,
-            value: element.spentAmount||0
+            value: element.spentAmount || 0
           })
           this.yuSuan.push({
             name: element.category,
-            value: element.amount||0
+            value: element.amount || 0
           })
         });
-        console.log(this.zhichu)
+        //console.log(this.zhichu)
       })
     },
     handleSetLineChartData(type) {

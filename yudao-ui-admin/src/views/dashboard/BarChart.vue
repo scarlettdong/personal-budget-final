@@ -37,7 +37,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       setTimeout(() => {
-        console.log(this.barDate)
+        // console.log(this.barDate)
         this.initChart()
       }, 1000);
     })
