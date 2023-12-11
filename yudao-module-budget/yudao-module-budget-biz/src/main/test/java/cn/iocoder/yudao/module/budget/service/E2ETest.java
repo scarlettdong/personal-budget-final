@@ -36,15 +36,15 @@ public class E2ETest {
         WebElement loginButton = driver.findElement(By.id("loginButton"));
 
         // 输入用户名和密码
-        usernameInput.sendKeys("admin");
-        passwordInput.sendKeys("admin123");
+        usernameInput.sendKeys("fuxinquan");
+        passwordInput.sendKeys("123456");
 
         // 点击登录按钮
         loginButton.click();
 
         // 验证登录后的页面标题
         String pageTitle = driver.getTitle();
-        assertEquals("个人预算管理系统", pageTitle);
+        assertEquals("Personal Budget Management System", pageTitle);
 
         // 关闭 WebDriver
         driver.quit();

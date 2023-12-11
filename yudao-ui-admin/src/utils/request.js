@@ -89,8 +89,8 @@ service.interceptors.response.use(async res => {
         return handleAuthorized();
       }
       MessageBox.confirm('Your token has expired, please log in again.', 'Token Expired', {
-          confirmButtonText: '退出',
-          cancelButtonText: '刷新',
+          confirmButtonText: 'quit',
+          cancelButtonText: 'flushed',
           type: 'warning'
         }
       ).then(()=>{

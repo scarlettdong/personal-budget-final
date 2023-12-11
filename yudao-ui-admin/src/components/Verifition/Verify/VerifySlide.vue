@@ -88,7 +88,7 @@ export default {
     },
     explain: {
       type: String,
-      default: '向右滑动完成验证'
+      default: 'swipe right to complete the verification'
     },
     imgSize: {
       type: Object,

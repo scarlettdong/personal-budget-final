@@ -13,18 +13,18 @@
           <raddar-chart />
         </div> -->
         <div class="chart-wrapper">
-          <h2>总计支出</h2>
+          <h2>total spending</h2>
           <pie-chart :PieData="zhichu" />
         </div>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <h2>预算</h2>
+          <h2>budget</h2>
           <pie-chart :PieData="yuSuan" />
         </div>
       </el-col>
       <el-col :xs="24" :sm="24" :lg="8">
-        <h1>支出</h1>
+        <h1>expenditure</h1>
         <div class="chart-wrapper">
           <bar-chart :barDate="LineData" />
         </div>
@@ -32,14 +32,14 @@
     </el-row>
 
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="bugdeteStr" label="日期" width="180">
+      <el-table-column prop="bugdeteStr" label="date" width="180">
       </el-table-column>
-      <el-table-column prop="category" label="类目" width="180">
+      <el-table-column prop="category" label="category" width="180">
       </el-table-column>
 
-      <el-table-column prop="amount" label="总预算">
+      <el-table-column prop="amount" label="total budget">
       </el-table-column>
-      <el-table-column prop="spentAmount" label="花费">
+      <el-table-column prop="spentAmount" label="spend">
       </el-table-column>
     </el-table>
   </div>
@@ -109,7 +109,7 @@ export default {
         // }
         console.log(res)
         res.forEach(e => {
-          e.bugdeteStr = `${e.budgetDate[0]}-${e.budgetDate[1]}-{${e.budgetDate[2]}}` || ''
+          e.bugdeteStr = `${e.budgetDate[0]}-${e.budgetDate[1]}-${e.budgetDate[2]}` || ''
           this.tableData.push(e)
           this.LineData.data.push(`${e.budgetDate[0]}-${e.budgetDate[1]}-${e.budgetDate[2]}`)
           this.LineData.series.push({

@@ -2,7 +2,7 @@
   <div v-show="showBox" :class="mode==='pop'?'mask':''">
     <div :class="mode==='pop'?'verifybox':''" :style="{'max-width':parseInt(imgSize.width)+30+'px'}">
       <div v-if="mode==='pop'" class="verifybox-top">
-        请完成安全验证
+        please complete the security verification
         <span class="verifybox-close" @click="closeBox">
           <i class="iconfont icon-close" />
         </span>

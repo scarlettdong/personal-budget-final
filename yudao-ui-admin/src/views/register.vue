@@ -1,9 +1,9 @@
 <template>
   <div class="register">
     <el-form ref="registerForm" :model="registerForm" :rules="registerRules" class="register-form">
-      <h3 class="title">Personal Budget Management System</h3>
+      <h3 class="title">Budget Tracker</h3>
       <el-form-item prop="username">
-        <el-input v-model="registerForm.username" type="text" auto-complete="off" placeholder="账号">
+        <el-input v-model="registerForm.username" type="text" auto-complete="off" placeholder="account">
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>
@@ -12,7 +12,7 @@
           v-model="registerForm.password"
           type="password"
           auto-complete="off"
-          placeholder="密码"
+          placeholder="password"
           @keyup.enter.native="handleRegister"
         >
           <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
@@ -23,7 +23,7 @@
           v-model="registerForm.confirmPassword"
           type="password"
           auto-complete="off"
-          placeholder="确认密码"
+          placeholder="confirm your password"
           @keyup.enter.native="handleRegister"
         >
           <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
@@ -37,11 +37,11 @@
           style="width:100%;"
           @click.native.prevent="getCode"
         >
-          <span v-if="!loading">注 册</span>
-          <span v-else>注 册 中...</span>
+          <span v-if="!loading">registration</span>
+          <span v-else>registered...</span>
         </el-button>
         <div style="float: right;">
-          <router-link class="link-type" :to="'/login'">使用已有账户登录</router-link>
+          <router-link class="link-type" :to="'/login'">log in with an existing account</router-link>
         </div>
       </el-form-item>
     </el-form>
@@ -69,7 +69,7 @@ export default {
   data() {
     const equalToPassword = (rule, value, callback) => {
       if (this.registerForm.password !== value) {
-        callback(new Error("两次输入的密码不一致"));
+        callback(new Error("the password entered twice is inconsistent"));
       } else {
         callback();
       }
@@ -86,15 +86,15 @@ export default {
       },
       registerRules: {
         username: [
-          { required: true, trigger: "blur", message: "请输入您的账号" },
-          { min: 2, max: 20, message: '用户账号长度必须介于 2 和 20 之间', trigger: 'blur' }
+          { required: true, trigger: "blur", message: "please enter your account number" },
+          { min: 2, max: 20, message: 'user accounts must be between 2 and 20 in length', trigger: 'blur' }
         ],
         password: [
-          { required: true, trigger: "blur", message: "请输入您的密码" },
-          { min: 5, max: 20, message: '用户密码长度必须介于 5 和 20 之间', trigger: 'blur' }
+          { required: true, trigger: "blur", message: "please enter your password" },
+          { min: 5, max: 20, message: 'user passwords must be between 5 and 20 in length', trigger: 'blur' }
         ],
         confirmPassword: [
-          { required: true, trigger: "blur", message: "请再次输入您的密码" },
+          { required: true, trigger: "blur", message: "please enter your password again" },
           { required: true, validator: equalToPassword, trigger: "blur" }
         ]
       },
@@ -118,7 +118,7 @@ export default {
     },
     handleRegister() {
       register(this.registerForm).then(response => {
-        this.$modal.msgSuccess("注册成功");
+        this.$modal.msgSuccess("registration is successful");
       }).then(() => {
         this.$router.push("/login");
       });

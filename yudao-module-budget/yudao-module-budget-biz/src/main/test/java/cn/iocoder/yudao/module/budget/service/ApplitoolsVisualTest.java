@@ -39,11 +39,4 @@ public class ApplitoolsVisualTest {
         eyes.checkWindow("login");
     }
 
-    @AfterEach
-    public void tearDown() {
-        // 关闭 Eyes 和 WebDriver
-//        eyes.close();
-//        eyes.abortIfNotClosed();
-//        driver.quit();
-    }
 }
